@@ -1,6 +1,7 @@
 import java.util.LinkedList;
+import java.io.Serializable;
 
-public class Concecionaria {
+public class Concecionaria implements Serializable {
     LinkedList<Vehiculo> listaDeVehiculos = new LinkedList<>();
 
     // Método para agregar un vehículo a la lista

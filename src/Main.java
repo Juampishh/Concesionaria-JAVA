@@ -43,9 +43,15 @@ public class Main {
 
 */
         // Carga la lista de vehículos al inicio del programa
-        LinkedList<Vehiculo> vehiculosGuardados = (LinkedList<Vehiculo>) RecuperarVehiculos.recuperarVehiculos("lista_vehiculos.dat");
+        LinkedList<Vehiculo> vehiculosGuardados =  RecuperarVehiculos.recuperarVehiculos("lista_vehiculos.dat");
         if (vehiculosGuardados != null) {
             concecionaria.agregarListaDeVehiculos(vehiculosGuardados);
+        }
+
+        // Carga la lista de vehículos en el taller al inicio del programa
+        LinkedList<Vehiculo> vehiculosEnTaller = RecuperarVehiculos.recuperarVehiculos("lista_vehiculos-en-taller.dat");
+        if (vehiculosEnTaller != null) {
+            taller.agregarListaVehiculosEnTaller(vehiculosEnTaller);
         }
 
         System.out.println("**********************************************************");
@@ -73,9 +79,7 @@ public class Main {
                     System.out.println("---------------------------------------------------------------------------------------------------------------------------------------------------|");
                     System.out.printf("| %-15s | %-15s | %-15s | %-15s | %-15s | %-15s | %-15s |\n", "Nombre", "Marca", "Carroceria", "Año", "Color",  "Kilometraje","Estado del motor");
                     System.out.println("---------------------------------------------------------------------------------------------------------------------------------------------------|");
-
-
-                    //Recorro la lista de vehiculos guardados y los muestro por pantalla llamando a la funcion toString
+                    //Recorro la lista de vehiculos guardados y los muestro por pantalla
                     for (Vehiculo vehiculo : vehiculosGuardados) {
                         if (vehiculo instanceof Camionetas) {
                             //Casteo el vehiculo de clase vehiculo a Camioneta
@@ -222,7 +226,7 @@ public class Main {
                                 boolean estadoMotor = scanner.nextBoolean();
                                 camioneta.setEstadoMotor(estadoMotor);
                                 //Control de que el estado del motor sea true para poder agregar la camioneta al catalogo
-                                if(estadoMotor == true){
+                                if(estadoMotor){
                                     camioneta.setId(vehiculosGuardados.size()+1);
                                     concecionaria.agregarVehiculo(camioneta);
                                     vehiculosGuardados.add(camioneta);
@@ -342,7 +346,7 @@ public class Main {
                                 boolean estadoMotorAuto = scanner.nextBoolean();
                                 automovil.setEstadoMotor(estadoMotorAuto);
                                 //Verifico que el estado del motor sea true para poder agregar el automovil al catalogo
-                                if(estadoMotorAuto == true){
+                                if(estadoMotorAuto){
                                     automovil.setId(vehiculosGuardados.size()+1);
                                     vehiculosGuardados.add(automovil);
                                     concecionaria.agregarVehiculo(automovil);
@@ -470,6 +474,8 @@ public class Main {
                     System.out.println("Selecciono Consultar taller:");
                     //Muestro los vehiculos que se encuentran en el taller
                     taller.verVehiculosEnTaller();
+                    System.out.println("***************************************************************************************************************************************************|");
+                    GuardarVehiculos.guardarVehiculos(taller.obtenerVehiculosEnTaller() ,"lista_vehiculos-en-taller.dat");
                     break;
                 case 4:
                     System.out.println("Eliminar un vehículo del stock:");
@@ -502,7 +508,7 @@ public class Main {
 
     }
 }
-class GuardarVehiculos {
+class GuardarVehiculos implements Serializable {
 
     public static void guardarVehiculos(LinkedList<Vehiculo> vehiculos, String nombreArchivo) {
         try {
@@ -548,7 +554,7 @@ class GuardarVehiculos {
     }
 }
 
-class RecuperarVehiculos {
+class RecuperarVehiculos implements Serializable {
 
     public static LinkedList<Vehiculo> recuperarVehiculos(String nombreArchivo) {
         LinkedList<Vehiculo> vehiculos = null;
