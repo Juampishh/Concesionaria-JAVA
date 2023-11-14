@@ -73,31 +73,31 @@ public class Main {
             switch (opcion) {
                 case 1:
                     System.out.println("Selecciono ver Catálogo de vehículos:");
-                    System.out.println("***************************************************************************************************************************************************|");
-                    System.out.println("-------------------------------------------------------|CATALOGO DE VEHICULOS|---------------------------------------------------------------------|");
-                    System.out.println("***************************************************************************************************************************************************|");
-                    System.out.println("---------------------------------------------------------------------------------------------------------------------------------------------------|");
-                    System.out.printf("| %-15s | %-15s | %-15s | %-15s | %-15s | %-15s | %-15s |\n", "Nombre", "Marca", "Carroceria", "Año", "Color",  "Kilometraje","Estado del motor");
-                    System.out.println("---------------------------------------------------------------------------------------------------------------------------------------------------|");
+                    System.out.println("***********************************************************************************************************************************************************************|");
+                    System.out.println("-------------------------------------------------------|CATALOGO DE VEHICULOS|-----------------------------------------------------------------------------------------|");
+                    System.out.println("***********************************************************************************************************************************************************************|");
+                    System.out.println("-----------------------------------------------------------------------------------------------------------------------------------------------------------------------|");
+                    System.out.printf("| %-15s | | %-15s | %-15s | %-15s | %-15s | %-15s | %-15s | %-15s |\n", "Tipo","Nombre", "Marca", "Carroceria", "Año", "Color",  "Kilometraje","Estado del motor");
+                    System.out.println("-----------------------------------------------------------------------------------------------------------------------------------------------------------------------|");
                     //Recorro la lista de vehiculos guardados y los muestro por pantalla
                     for (Vehiculo vehiculo : vehiculosGuardados) {
                         if (vehiculo instanceof Camionetas) {
                             //Casteo el vehiculo de clase vehiculo a Camioneta
                             Camionetas camioneta = (Camionetas) vehiculo;
-                            System.out.printf("| %-15s | %-15s | %-15s | %-15d | %-15s | %-15d | %-20s |\n",
-                                    camioneta.getNombre(), camioneta.getMarca(), camioneta.getCarroceria(), camioneta.getAnio(),
+                            System.out.printf("| %-15s | | %-15s | %-15s | %-15s | %-15d | %-15s | %-15d | %-20s |\n",
+                                   "Camioneta" ,camioneta.getNombre(), camioneta.getMarca(), camioneta.getCarroceria(), camioneta.getAnio(),
                                     camioneta.getColor(), camioneta.getKm(), camioneta.getEstadoMotor() ? "El motor se encuentra en buen estado" : "El motor necesita mantenimiento");
                         } else if (vehiculo instanceof Automovil) {
                             //Casteo el vehiculo de clase vehiculo a Automovil
                             Automovil automovil = (Automovil) vehiculo;
-                            System.out.printf("| %-15s | %-15s | %-15s | %-15d | %-15s | %-15d | %-20s |\n",
-                                    automovil.getNombre(), automovil.getMarca(), automovil.getCarroceria(), automovil.getAnio(),
+                            System.out.printf("| %-15s | | %-15s | %-15s | %-15s | %-15d | %-15s | %-15d | %-20s |\n",
+                                   "Automovil" ,automovil.getNombre(), automovil.getMarca(), automovil.getCarroceria(), automovil.getAnio(),
                                     automovil.getColor(), automovil.getKm(), automovil.getEstadoMotor()? "El motor se encuentra en buen estado" : "El motor necesita mantenimiento");
                         } else if (vehiculo instanceof Motocicletas) {
                             //Casteo el vehiculo de clase vehiculo a Motocicleta
                             Motocicletas motocicleta = (Motocicletas) vehiculo;
-                            System.out.printf("| %-15s | %-15s | %-15s | %-15d | %-15s | %-15d | %-20s |\n",
-                                    motocicleta.getNombre(), motocicleta.getMarca(), "-----", motocicleta.getAnio(),
+                            System.out.printf("| %-15s | | %-15s | %-15s | %-15s | %-15d | %-15s | %-15d | %-20s |\n",
+                                    "Motocicleta",motocicleta.getNombre(), motocicleta.getMarca(), "-----", motocicleta.getAnio(),
                                     motocicleta.getColor(), motocicleta.getKm(), motocicleta.getEstadoMotor()? "El motor se encuentra en buen estado" : "El motor necesita mantenimiento");
                         } else {
                             System.out.println("Es de otra clase");
@@ -488,9 +488,35 @@ public class Main {
                     System.out.println("El vehiculo con el ID "+id+" fue eliminado del catalogo");
                     System.out.println("***********************************************************");
                     GuardarVehiculos.guardarVehiculos(concecionaria.obtenerListaDeVehiculos() ,"lista_vehiculos.dat");
-                    //Muestro los vehiculos que se encuentran en el catalogo
-                    for(Vehiculo vehiculo : vehiculosGuardados){
-                        System.out.println(vehiculo.toString());
+                    System.out.println("***********************************************************************************************************************************************************************|");
+                    System.out.println("-------------------------------------------------------|CATALOGO DE VEHICULOS|-----------------------------------------------------------------------------------------|");
+                    System.out.println("***********************************************************************************************************************************************************************|");
+                    System.out.println("-----------------------------------------------------------------------------------------------------------------------------------------------------------------------|");
+                    System.out.printf("| %-15s | | %-15s | %-15s | %-15s | %-15s | %-15s | %-15s | %-15s |\n", "Tipo","Nombre", "Marca", "Carroceria", "Año", "Color",  "Kilometraje","Estado del motor");
+                    System.out.println("-----------------------------------------------------------------------------------------------------------------------------------------------------------------------|");
+                    //Recorro la lista de vehiculos guardados y los muestro por pantalla
+                    for (Vehiculo vehiculo : vehiculosGuardados) {
+                        if (vehiculo instanceof Camionetas) {
+                            //Casteo el vehiculo de clase vehiculo a Camioneta
+                            Camionetas camioneta = (Camionetas) vehiculo;
+                            System.out.printf("| %-15s | | %-15s | %-15s | %-15s | %-15d | %-15s | %-15d | %-20s |\n",
+                                    "Camioneta" ,camioneta.getNombre(), camioneta.getMarca(), camioneta.getCarroceria(), camioneta.getAnio(),
+                                    camioneta.getColor(), camioneta.getKm(), camioneta.getEstadoMotor() ? "El motor se encuentra en buen estado" : "El motor necesita mantenimiento");
+                        } else if (vehiculo instanceof Automovil) {
+                            //Casteo el vehiculo de clase vehiculo a Automovil
+                            Automovil automovil = (Automovil) vehiculo;
+                            System.out.printf("| %-15s | | %-15s | %-15s | %-15s | %-15d | %-15s | %-15d | %-20s |\n",
+                                    "Automovil" ,automovil.getNombre(), automovil.getMarca(), automovil.getCarroceria(), automovil.getAnio(),
+                                    automovil.getColor(), automovil.getKm(), automovil.getEstadoMotor()? "El motor se encuentra en buen estado" : "El motor necesita mantenimiento");
+                        } else if (vehiculo instanceof Motocicletas) {
+                            //Casteo el vehiculo de clase vehiculo a Motocicleta
+                            Motocicletas motocicleta = (Motocicletas) vehiculo;
+                            System.out.printf("| %-15s | | %-15s | %-15s | %-15s | %-15d | %-15s | %-15d | %-20s |\n",
+                                    "Motocicleta",motocicleta.getNombre(), motocicleta.getMarca(), "-----", motocicleta.getAnio(),
+                                    motocicleta.getColor(), motocicleta.getKm(), motocicleta.getEstadoMotor()? "El motor se encuentra en buen estado" : "El motor necesita mantenimiento");
+                        } else {
+                            System.out.println("Es de otra clase");
+                        }
                     }
                     break;
                 case 5:
